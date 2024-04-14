@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  title: Swivl Backend Docs
+  description: Documentation for API endpoints
+  version: 1.0.0
+servers:
+  - url: http://localhost:3005
+paths:
+  /users/register:
+    post:
+      summary: User Registration Endpoint
+      description: Endpoint for user registration.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  default: 'siva'
+                mail:
+                  type: string
+                  default: 'siva@gmail.com'
+                password:
+                  type: string
+                  default: 'siva'
+                
+      responses:
+        '200':
+          description: User registered successfully
+        '400':
+          description: Error message if registration fails
+  /users/login:
+    post:
+      summary: User Login Endpoint
+      description: Endpoint for user login.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  default: 'sivashankar'
+                password:
+                  type: string
+                  default: 'siva'
+
+      responses:
+        '200':
+          description: User logged in successfully
+        '400':
+          description: Error message if login fails
+
+  /diary/create:
+    post:
+      summary: Create Travel Entry
+      description: Endpoint for Entry.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry_no:
+                  type: number
+                  default: 0
+                title:
+                  type: string
+                  default: 'Munnar'
+                location:
+                  type: string
+                  default: 'Kerala'
+                description:
+                  type: string
+                  default: 'Famous Vacation Spot'
+                date:
+                  type: date
+                  default: '14/04/2024'
+                photos:
+                  type: array
+                  default: []         
+      responses:
+        '200':
+          description: User registered successfully
+        '400':
+          description: Error message if registration fails
+      security:
+        - bearerAuth: []   # This specifies that JWT token is required for this endpoint
+    
+  /diary/get:
+    get:
+      summary: Travel Data Fetching Endpoint
+      description: Endpoint to fetch travel data with filtering options.
+      responses:
+        '200':
+          description: Successful response
+        '500':
+          description: Internal server error
+      security:
+        - bearerAuth: []   # This specifies that JWT token is required for this endpoint
+  
+  /diary/update:
+    put:
+      summary: Update Travel Entry
+      description: Endpoint for updating Entry.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry_no:
+                  type: number
+                  default: 0
+                title:
+                  type: string
+                  default: 'Munnar'
+                location:
+                  type: string
+                  default: 'Kerala'
+                description:
+                  type: string
+                  default: 'Famous Vacation Spot'
+                date:
+                  type: date
+                  default: '14/04/2024'
+                photos:
+                  type: array
+                  default: []         
+      responses:
+        '200':
+          description: Entry updated successfully
+        '400':
+          description: Error message if updation fails
+      security:
+        - bearerAuth: []   # This specifies that JWT token is required for this endpoint
+
+  /diary/delete:
+    delete:
+      summary: Delete Travel Entry
+      description: Endpoint for deleting Entry.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                entry_no:
+                  type: number
+                  default: 0
+                         
+      responses:
+        '200':
+          description: Entry deleted successfully
+        '400':
+          description: Error message if deletion fails
+      security:
+        - bearerAuth: []   # This specifies that JWT token is required for this endpoint
+          
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT  # Optional, for documentation clarity
