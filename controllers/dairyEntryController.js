@@ -2,6 +2,10 @@ const { createDiaryEntry, getDiaryEntries, updateEntry, getEntryByNum, deleteEnt
 
 async function createEntry(req, res) {
     const { entry_no, title, description, date, location } = req.body;
+    const entry = await getEntryByNum(entry_no)
+    if(entry){
+        res.status(401).send({data:'Entry No already exists'})
+    }
     const entryId = await createDiaryEntry({ entry_no, title, description, date, location, });
     res.status(201).send({ entryId, data: 'Entry added successfully' });
 }
