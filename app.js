@@ -21,7 +21,7 @@ app.use('/diary', diaryEntryRoutes);
 
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3005/");
+    res.header("Access-Control-Allow-Origin", "http://localhost:3005/", "https://swivl-backend-1-7srh.onrender.com/");
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept , Authorization");
     next()
