@@ -37,4 +37,8 @@ connectToDb().then(() => {
 });
 
 
+app.get('/', (req,res) => {
+    res.send("Hi, Welcome to Swivl - Backend for testing the routes navigate to /docs for swagger document.")
+})
+
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
